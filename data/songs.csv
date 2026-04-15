@@ -9,3 +9,13 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
 9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
 10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
+11,Late Night Texts,Velvet Haze,r&b,romantic,0.55,96,0.72,0.70,0.40
+12,Drop the Bass,DJ Axiom,electronic,energetic,0.95,140,0.68,0.91,0.03
+13,Mountain Morning,Cedar & Sage,folk,peaceful,0.30,100,0.74,0.45,0.94
+14,Concrete Jungle,Metro Lyric,hip-hop,intense,0.85,105,0.52,0.84,0.08
+15,Rainy Window,Pale Iris,classical,sad,0.20,66,0.38,0.25,0.97
+16,Island Breeze,Sunstone Crew,reggae,happy,0.65,92,0.83,0.78,0.50
+17,Shatter Point,Iron Veil,metal,intense,0.97,170,0.30,0.55,0.04
+18,Dusty Highway,Barn Owl Band,country,relaxed,0.50,112,0.70,0.64,0.82
+19,Fading Polaroids,Ghost Frequency,indie pop,melancholic,0.45,88,0.35,0.48,0.60
+20,After Hours,Velvet Haze,r&b,moody,0.60,84,0.58,0.72,0.35
