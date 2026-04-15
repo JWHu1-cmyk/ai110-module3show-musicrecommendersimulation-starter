@@ -155,38 +155,41 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+### Weight-Shift Experiment: Genre halved (2.0 → 1.0), Energy doubled (1.0 → 2.0)
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+**Hypothesis:** Reducing genre dominance and increasing energy sensitivity will break genre bubbles and produce more energy-aware rankings.
+
+**Key results:**
+
+- **Pop Listener:** "Rooftop Lights" (indie pop) jumped from #4 to #2 — its energy similarity (0.96) became more valuable than "Gym Hero's" genre match. Genre bubble partially broken.
+- **Rock Fan:** "Drop the Bass" (electronic) entered the top 5 for the first time — its energy (0.95) is near the target (0.92), and the doubled weight pushed it past mood-matched songs.
+- **Middle-of-the-Road:** Lofi/chill songs overtook pop songs in the top 3. With energy doubled, songs closer to 0.50 energy rose regardless of genre.
+
+**Conclusion:** The recommendations were *different* but not objectively *more accurate*. The experiment showed that weight tuning is a value judgment — it decides whether genre identity or acoustic feel defines a user's taste. The original weights were reverted after the experiment.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+- **Genre dominance creates filter bubbles.** At +2.0, a genre match alone can outweigh a perfect mood+energy fit from another genre. Users are unlikely to discover songs outside their stated genre.
+- **Exact-match categoricals.** "Indie pop" ≠ "pop" and "chill" ≠ "relaxed" — semantically similar values get zero partial credit.
+- **Tiny catalog (20 songs).** Some genres have only one song, making rankings trivially determined by catalog size rather than algorithmic quality.
+- **No learning or context.** The profile is static — no feedback loop, no time-of-day awareness, no listening history.
+- **Conflicting preferences are poorly handled.** The High-Energy Sad profile got a quiet classical track because genre+mood overwhelmed the energy mismatch.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+See [model_card.md](model_card.md) for a deeper analysis.
 
 ---
 
 ## Reflection
 
-Read and complete `model_card.md`:
+**[Model Card](model_card.md)** — full evaluation, strengths, limitations, bias analysis, and future work.
 
-[**Model Card**](model_card.md)
+**[Reflection](reflection.md)** — detailed profile-pair comparisons explaining what changed between outputs and why.
 
-Write 1 to 2 paragraphs here about what you learned:
+Building this recommender showed how a simple weighted sum can produce surprisingly convincing results — but also how fragile those results are. The entire ranking hinges on a handful of weight values chosen by the developer, not learned from data. Changing genre from 2.0 to 1.0 reshuffled every profile's top 5, and neither version was objectively "correct." This is the core lesson: recommenders do not discover truth, they encode a designer's assumptions about what matters.
 
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
+Bias enters most subtly through omission. The catalog has no K-pop, Latin, or Afrobeat — so users who prefer those genres get demoted to a fallback path with compressed, low-confidence scores. The mood labels were assigned by one person, reflecting a single cultural lens on what "happy" or "intense" means. And the exact-match design means semantically similar categories (chill vs. relaxed, indie pop vs. pop) are treated as completely unrelated. In a real product, these design choices would quietly shape what millions of listeners are exposed to — and what they never hear.
 
 
 ---
