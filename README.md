@@ -110,6 +110,12 @@ Below is the terminal output showing recommendations for all three user profiles
 
 ![Terminal output showing recommendations](terminal_output.png)
 
+### Edge-Case / Adversarial Profiles Output
+
+Below is the terminal output including the three adversarial profiles (High-Energy Sad, K-Pop Fan with missing genre, Middle-of-the-Road) that stress-test the scoring logic:
+
+![Terminal output showing edge-case profile recommendations](terminal_output1.png)
+
 ---
 
 ## Getting Started

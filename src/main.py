@@ -49,10 +49,45 @@ def main() -> None:
         "target_valence": 0.45,
     }
 
+    # --- Edge-Case / Adversarial Profiles ---
+
+    # Conflicting: high energy but sad mood — can the system handle the tension?
+    profile_d = {
+        "favorite_genre": "classical",
+        "favorite_mood": "sad",
+        "target_energy": 0.90,
+        "likes_acoustic": True,
+        "target_danceability": 0.80,
+        "target_valence": 0.20,
+    }
+
+    # Non-existent genre — nothing in the catalog matches "k-pop"
+    profile_e = {
+        "favorite_genre": "k-pop",
+        "favorite_mood": "happy",
+        "target_energy": 0.70,
+        "likes_acoustic": False,
+        "target_danceability": 0.85,
+        "target_valence": 0.90,
+    }
+
+    # Middle-of-the-road — all preferences at 0.5, no strong signal
+    profile_f = {
+        "favorite_genre": "pop",
+        "favorite_mood": "chill",
+        "target_energy": 0.50,
+        "likes_acoustic": False,
+        "target_danceability": 0.50,
+        "target_valence": 0.50,
+    }
+
     profiles = {
         "Upbeat Pop Listener": profile_a,
         "Chill Lofi Studier": profile_b,
         "Intense Rock Fan": profile_c,
+        "EDGE: High-Energy Sad (conflicting)": profile_d,
+        "EDGE: K-Pop Fan (missing genre)": profile_e,
+        "EDGE: Middle-of-the-Road (no strong signal)": profile_f,
     }
 
     for name, prefs in profiles.items():
